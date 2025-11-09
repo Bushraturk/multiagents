@@ -100,11 +100,11 @@ async def handle(message: cl.Message):
         # If already in a lesson, route to sub-agent
         stage = user_state.get("stage")
         if stage == "english":
-            reply = Runner.run(english_agent, input=text, run_config=config)
+            reply = await Runner.run(english_agent, input=text, run_config=config)
         elif stage == "python":
-            reply = Runner.run(python_agent, input=text, run_config=config)
+            reply = await Runner.run(python_agent, input=text, run_config=config)
         elif stage == "sdk":
-            reply = Runner.run(sdk_agent, input=text, run_config=config)
+            reply = await Runner.run(sdk_agent, input=text, run_config=config)
         else:
             reply = "Something went wrong. Please restart."
 
