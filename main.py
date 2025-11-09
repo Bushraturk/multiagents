@@ -87,20 +87,20 @@ async def handle(message: cl.Message):
     if user_state.get("stage") == "manager":
         if "english" in text:
             user_state["stage"] = "english"
-            reply = Runner.run_sync(english_agent, input="Start the English lesson", run_config=config)
+            reply = Runner.run(english_agent, input="Start the English lesson", run_config=config)
         elif "python" in text:
             user_state["stage"] = "python"
-            reply = Runner.run_sync(python_agent, input="Start the Python lesson", run_config=config)
+            reply = Runner.run(python_agent, input="Start the Python lesson", run_config=config)
         elif "sdk" in text or "openai" in text:
             user_state["stage"] = "sdk"
-            reply = Runner.run_sync(sdk_agent, input="Start the OpenAI SDK lesson", run_config=config)
+            reply = Runner.run(sdk_agent, input="Start the OpenAI SDK lesson", run_config=config)
         else:
             reply = "Please choose: English, Python, or OpenAI SDK."
     else:
         # If already in a lesson, route to sub-agent
         stage = user_state.get("stage")
         if stage == "english":
-            reply = Runner.run_sync(english_agent, input=text, run_config=config)
+            reply = Runner.run(english_agent, input=text, run_config=config)
         elif stage == "python":
             reply = Runner.run_sync(python_agent, input=text, run_config=config)
         elif stage == "sdk":
