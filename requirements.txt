@@ -1,0 +1,5 @@
+chainlit>=2.6.9
+python-dotenv
+openai-agents
+
+google-generativeai
